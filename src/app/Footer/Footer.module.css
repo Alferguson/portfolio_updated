@@ -1,0 +1,5 @@
+.footer {
+  padding-block: 1.5rem;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+  border-top: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
+}

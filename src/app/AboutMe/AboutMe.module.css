@@ -1,0 +1,4 @@
+.about {
+  padding-block: clamp(2rem, 6dvh, 4rem);
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
