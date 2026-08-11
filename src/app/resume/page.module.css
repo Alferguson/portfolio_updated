@@ -1,0 +1,73 @@
+.page {
+  max-width: 68ch;
+  padding-block: clamp(2.5rem, 8dvh, 5rem);
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.intro {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.eyebrow {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-blue);
+}
+
+.title {
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  letter-spacing: -0.03em;
+}
+
+.lede {
+  margin-top: 1rem;
+  color: var(--muted);
+}
+
+.block {
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.blockTitle {
+  margin-bottom: 1.25rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.entry + .entry {
+  margin-top: 1.75rem;
+}
+
+.role {
+  font-size: 1.1rem;
+}
+
+.meta {
+  margin-block: 0.35rem 0.75rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.skills li {
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent-purple) 8%, transparent);
+}

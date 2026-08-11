@@ -1,5 +1,159 @@
 .hero {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  /* The row no longer supplies this height now that the shell grid has a
+     single content area, so the hero claims the first viewport itself. */
+  min-height: calc(100dvh - var(--header-h));
+  overflow: hidden;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      color-mix(in srgb, var(--accent-purple) 18%, transparent),
+      transparent 60%
+    ),
+    var(--background);
+}
+
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Faint technical grid under the shapes — the flat "readout" backdrop the
+   Evangelion title cards use behind their geometry. */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+      to right,
+      color-mix(in srgb, var(--accent-purple) 12%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--accent-purple) 12%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at center, #000 20%, transparent 75%);
+}
+
+.hex {
+  position: absolute;
+  border: 1.5px solid var(--accent-violet);
+  background: color-mix(in srgb, var(--accent-purple) 12%, transparent);
+  /* Regular hexagon via six-point polygon; clip-path keeps it a single
+     element with no SVG or pseudo-element stacking. */
+  clip-path: polygon(25% 5%, 75% 5%, 100% 50%, 75% 95%, 25% 95%, 0% 50%);
+  opacity: 0;
+  animation-name: hexPop;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-purple) 20%,
+    var(--accent-violet) 50%,
+    var(--accent-purple) 80%,
+    transparent
+  );
+  opacity: 0;
+  transform-origin: left;
+  animation-name: lineSweep;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes hexPop {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  15% {
+    opacity: 0.9;
+    transform: scale(1) rotate(0deg);
+  }
+  55% {
+    opacity: 0.45;
+    transform: scale(1.05) rotate(30deg);
+  }
+  75% {
+    opacity: 0;
+    transform: scale(0.9) rotate(30deg);
+  }
+}
+
+@keyframes lineSweep {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  20% {
+    opacity: 0.85;
+    transform: scaleX(1);
+  }
+  70% {
+    opacity: 0.3;
+    transform: scaleX(1);
+  }
+  85% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+.content {
+  position: relative;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+  text-align: center;
+}
+
+.eyebrow {
+  margin-bottom: 1rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+}
+
+.title {
+  font-size: clamp(2.5rem, 9vw, 6rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.subtitle {
+  max-width: 46ch;
+  margin: 1.25rem auto 0;
+  font-size: clamp(1rem, 2.2vw, 1.25rem);
+  color: var(--muted);
+}
+
+/* The field is pure decoration; with reduced motion it settles into a
+   static composition instead of pulsing. */
+@media (prefers-reduced-motion: reduce) {
+  .hex,
+  .line {
+    animation: none;
+    opacity: 0.35;
+  }
+
+  .line {
+    transform: scaleX(1);
+  }
 }

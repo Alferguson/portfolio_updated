@@ -1,34 +1,49 @@
-.layout {
+/* Kept out of the flow until focused, so keyboard users can jump the
+   header and sidebar rails without a visible control for everyone else. */
+.skipLink {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  padding: 0.75rem 1rem;
+  background: var(--background);
+  border: 1px solid var(--accent-purple);
+  border-radius: 0 0 0.375rem 0;
+  transform: translateY(-120%);
+  transition: transform 150ms ease;
+}
+
+/* :focus rather than :focus-visible — the control is off-screen until
+   focused, so it must reveal itself for every way of reaching it. */
+.skipLink:focus {
+  transform: translateY(0);
+}
+
+.shell {
   /* Containing block for Header's scroll sentinel (position: absolute),
      so it can be anchored to the true top of the page instead of the
      sticky header, which never leaves the viewport once stuck. */
   position: relative;
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
-  grid-template-rows:
-    var(--header-h)
-    minmax(calc(100dvh - var(--header-h)), auto)
-    auto
-    auto;
+  grid-template-rows: var(--header-h) 1fr auto;
   grid-template-areas:
     "header header"
-    "sidebar hero"
-    "sidebar about"
-    "footer footer";
+    "sidebar main"
+    "sidebar footer";
   min-height: 100dvh;
   transition: grid-template-columns 200ms ease;
 }
 
 /* :has() reads the sidebar's own hover/focus-within state so the rail can
    expand on desktop with zero JS keeping the two elements in sync. */
-.layout:has(.sidebar:hover, .sidebar:focus-within) {
+.shell:has(.sidebar:hover, .sidebar:focus-within) {
   grid-template-columns: var(--sidebar-w-expanded) 1fr;
 }
 
 .header,
 .sidebar,
-.hero,
-.about,
+.main,
 .footer {
   /* Grid items default to a min-size based on content; reset it so long
      unbroken text/media can't blow out the track sizes above. */
@@ -44,39 +59,41 @@
   grid-area: sidebar;
 }
 
-.hero {
-  grid-area: hero;
+.main {
+  grid-area: main;
 }
 
-.about {
-  grid-area: about;
+/* The skip-link target is focusable but is not an interactive control, so
+   it should not flash an outline when focus lands on it programmatically. */
+.main:focus {
+  outline: none;
 }
 
 .footer {
   grid-area: footer;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .shell {
+    transition: none;
+  }
+}
+
 /* Container query against body's inline size (set in globals.css) rather
    than a viewport media query: collapses the two-column rail layout into a
    stacked layout with the sidebar acting as a top bar/hamburger. */
 @container (max-width: 760px) {
-  .layout {
+  .shell {
     grid-template-columns: 1fr;
-    grid-template-rows:
-      var(--header-h)
-      auto
-      minmax(calc(100dvh - var(--header-h)), auto)
-      auto
-      auto;
+    grid-template-rows: var(--header-h) auto 1fr auto;
     grid-template-areas:
       "header"
       "sidebar"
-      "hero"
-      "about"
+      "main"
       "footer";
   }
 
-  .layout:has(.sidebar:hover, .sidebar:focus-within) {
+  .shell:has(.sidebar:hover, .sidebar:focus-within) {
     grid-template-columns: 1fr;
   }
 }

@@ -1,0 +1,44 @@
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.75rem);
+}
+
+.link {
+  position: relative;
+  padding-block: 0.25rem;
+  font-size: clamp(0.9rem, 1.6vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--foreground);
+  transition: color 200ms ease;
+}
+
+/* Underline grows from the left on hover/focus instead of a border toggle,
+   so there is no layout shift and the motion matches the header gradient. */
+.link::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-purple),
+    var(--accent-blue)
+  );
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: var(--accent-purple);
+}
+
+.link:hover::after,
+.link:focus-visible::after {
+  transform: scaleX(1);
+}

@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
+import Links from "../Links";
 import styles from "./Header.module.css";
 
 type HeaderProps = {
@@ -34,11 +36,10 @@ export default function Header({ className }: HeaderProps) {
         aria-hidden="true"
       />
       <header className={[styles.header, className].filter(Boolean).join(" ")}>
-        <span className={styles.name}>Alexander Ferguson</span>
-        <nav className={styles.nav} aria-label="Primary">
-          <a href="#blog">Blog</a>
-          <a href="#resume">Resume</a>
-        </nav>
+        <Link href="/" className={styles.name}>
+          John (Alex)ander Ferguson
+        </Link>
+        <Links />
       </header>
     </>
   );

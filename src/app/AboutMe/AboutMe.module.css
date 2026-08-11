@@ -1,4 +1,49 @@
 .about {
-  padding-block: clamp(2rem, 6dvh, 4rem);
-  padding-inline: clamp(1rem, 4vw, 3rem);
+  padding-block: clamp(3rem, 10dvh, 6rem);
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.eyebrow {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+}
+
+.title {
+  position: relative;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  letter-spacing: -0.03em;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 4rem;
+  height: 3px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-blue));
+}
+
+.prose {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 68ch;
+  font-size: clamp(1rem, 1.6vw, 1.075rem);
+  color: var(--muted);
+}
+
+.prose code {
+  padding: 0.1em 0.4em;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.9em;
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, var(--accent-purple) 12%, transparent);
+  color: var(--foreground);
 }

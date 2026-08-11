@@ -1,5 +1,74 @@
 .footer {
-  padding-block: 1.5rem;
-  padding-inline: clamp(1rem, 4vw, 3rem);
-  border-top: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
+  padding-block: clamp(2.5rem, 7dvh, 4rem) 1.5rem;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+  border-top: 1px solid var(--hairline);
+  background: color-mix(in srgb, var(--foreground) 3%, var(--background));
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  margin-bottom: 0.5rem;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-purple);
+}
+
+.blurb {
+  max-width: 34ch;
+  color: var(--muted);
+}
+
+.socialList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  color: var(--muted);
+  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+}
+
+.social:hover,
+.social:focus-visible {
+  color: var(--foreground);
+  border-color: var(--accent-purple);
+  transform: translateY(-2px);
+}
+
+.icon {
+  display: inline-flex;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--accent-purple);
+}
+
+.icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.copyright {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--hairline);
 }
