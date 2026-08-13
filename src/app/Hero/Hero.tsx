@@ -71,7 +71,7 @@ export default function Hero({ className }: HeroProps) {
       <div className={styles.content}>
         <p className={styles.eyebrow}>Portfolio</p>
         <h1 id="hero-title" className={styles.title}>
-          Alexander Ferguson
+          John Alexander Ferguson
         </h1>
         <p className={styles.subtitle}>
           Software engineer building fast, accessible interfaces for the web.

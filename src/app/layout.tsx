@@ -18,10 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Alexander Ferguson",
-    template: "%s | Alexander Ferguson",
+    default: "John Alexander Ferguson",
+    template: "%s | John Alexander Ferguson",
   },
-  description: "Portfolio of Alexander Ferguson.",
+  description: "Portfolio of John Alexander Ferguson.",
 };
 
 /* The shell (header, sidebar, footer) lives in the root layout rather than

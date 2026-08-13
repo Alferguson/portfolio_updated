@@ -23,7 +23,7 @@ export default function Footer({ className }: FooterProps) {
       </div>
 
       <p className={styles.copyright}>
-        &copy; {new Date().getFullYear()} Alexander Ferguson
+        &copy; {new Date().getFullYear()} John Alexander Ferguson
       </p>
     </footer>
   );
